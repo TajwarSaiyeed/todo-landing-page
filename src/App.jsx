@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { ActionButton } from './components/ActionButton'
+import { SectionHeading } from './components/SectionHeading'
+import { SurfaceCard } from './components/SurfaceCard'
 import {
   FaArrowRight,
   FaBars,
@@ -459,23 +462,19 @@ function LandingPage({ navigate, darkMode, setDarkMode }) {
                 TaskFlow blends smart reminders, beautiful collaboration, and calm productivity in a modern interface built for focus.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <a
+                <ActionButton
                   href="/app"
+                  className="taskflow-cta"
                   onClick={(event) => {
                     event.preventDefault()
                     navigate('/app')
                   }}
-                  className="taskflow-cta inline-flex items-center justify-center gap-2 rounded-2xl bg-[#7C3AED] px-6 py-4 text-base font-bold text-white shadow-[0_18px_50px_rgba(124,58,237,0.28)] transition hover:bg-[#06B6D4]"
                 >
                   Start free <FaArrowRight />
-                </a>
-                <a
-                  href="#demo"
-                  onClick={(event) => handleAnchor(event, '#demo')}
-                  className="inline-flex items-center justify-center rounded-2xl border-2 border-violet-300 bg-white/90 px-6 py-4 text-base font-bold text-[#1E1E2E] transition hover:border-[#06B6D4] hover:text-[#06B6D4] dark:border-white/10 dark:bg-white/5 dark:text-white"
-                >
-                  Watch Demo
-                </a>
+                </ActionButton>
+                <ActionButton href="#demo" variant="secondary" onClick={(event) => handleAnchor(event, '#demo')}>
+                  Watch demo
+                </ActionButton>
               </div>
               <div className="mt-10 grid max-w-xl grid-cols-3 gap-4 text-sm font-semibold text-[#4B5563] dark:text-slate-300">
                 {['Cross-platform sync', 'Dark mode ready', 'Team collaboration'].map((item) => (
@@ -576,21 +575,22 @@ function LandingPage({ navigate, darkMode, setDarkMode }) {
         >
           <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {stats.map(({ value, label, icon: Icon }) => (
-              <motion.article
+              <SurfaceCard
+                as={motion.article}
                 key={label}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.35 }}
                 variants={sectionVariants}
                 transition={{ duration: 0.45 }}
-                className="rounded-3xl border border-violet-200 bg-white p-6 text-left shadow-[0_14px_40px_rgba(124,58,237,0.08)] dark:border-white/10 dark:bg-white/5"
+                className="p-6 text-left"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-100 text-[#7C3AED] dark:bg-white/10 dark:text-violet-200">
                   <Icon />
                 </div>
                 <p className="mt-6 text-4xl font-black text-[#1E1E2E] dark:text-white">{value}</p>
                 <p className="mt-2 text-sm font-semibold uppercase tracking-[0.32em] text-[#7C3AED]">{label}</p>
-              </motion.article>
+              </SurfaceCard>
             ))}
           </div>
         </SectionHeading>
@@ -603,21 +603,22 @@ function LandingPage({ navigate, darkMode, setDarkMode }) {
         >
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {features.map(({ title, description, icon: Icon, iconClass }) => (
-              <motion.article
+              <SurfaceCard
+                as={motion.article}
                 key={title}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 variants={sectionVariants}
                 transition={{ duration: 0.45 }}
-                className="group relative overflow-hidden rounded-3xl border border-violet-200 bg-white p-6 shadow-[0_18px_42px_rgba(124,58,237,0.08)] transition-all duration-300 before:absolute before:inset-x-0 before:top-0 before:h-1 before:origin-left before:scale-x-0 before:bg-gradient-to-r before:from-[#7C3AED] before:to-[#06B6D4] before:transition-transform before:duration-300 hover:-translate-y-2 hover:shadow-[0_28px_70px_rgba(124,58,237,0.22)] hover:before:scale-x-100 dark:border-white/10 dark:bg-[#151525]"
+                className="group relative overflow-hidden p-6"
               >
                 <div className={`flex h-14 w-14 items-center justify-center rounded-2xl text-2xl ${iconClass}`}>
                   <Icon />
                 </div>
                 <h3 className="mt-6 text-xl font-bold text-[#1E1E2E] dark:text-white">{title}</h3>
                 <p className="mt-3 text-base leading-7 text-[#374151] dark:text-slate-300">{description}</p>
-              </motion.article>
+              </SurfaceCard>
             ))}
           </div>
         </SectionHeading>
@@ -631,21 +632,22 @@ function LandingPage({ navigate, darkMode, setDarkMode }) {
           <div className="relative grid gap-6 lg:grid-cols-3 lg:pt-10">
             <div className="absolute left-10 right-10 top-20 hidden border-t-2 border-dashed border-violet-300/70 lg:block" />
             {steps.map((step, index) => (
-              <motion.article
+              <SurfaceCard
+                as={motion.article}
                 key={step.title}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 variants={sectionVariants}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="relative z-10 rounded-3xl border border-violet-200 bg-white p-6 shadow-[0_14px_34px_rgba(124,58,237,0.08)] dark:border-white/10 dark:bg-white/5"
+                className="relative z-10 p-6"
               >
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#7C3AED] text-white shadow-[0_14px_30px_rgba(124,58,237,0.25)]">
                   <step.icon />
                 </div>
                 <h3 className="mt-5 text-xl font-bold text-[#1E1E2E] dark:text-white">{step.title}</h3>
                 <p className="mt-3 text-base leading-7 text-[#4B5563] dark:text-slate-300">{step.description}</p>
-              </motion.article>
+              </SurfaceCard>
             ))}
           </div>
         </SectionHeading>
@@ -658,14 +660,15 @@ function LandingPage({ navigate, darkMode, setDarkMode }) {
         >
           <div className="grid gap-6 lg:grid-cols-3">
             {testimonials.map((item) => (
-              <motion.figure
+              <SurfaceCard
+                as={motion.figure}
                 key={item.name}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 variants={sectionVariants}
                 transition={{ duration: 0.45 }}
-                className="rounded-3xl border border-violet-200 bg-white p-6 shadow-[0_14px_34px_rgba(124,58,237,0.08)] dark:border-white/10 dark:bg-white/5"
+                className="p-6"
               >
                 <div className="flex items-center gap-1 text-[#F59E0B]">
                   {Array.from({ length: 5 }).map((_, index) => (
@@ -685,7 +688,7 @@ function LandingPage({ navigate, darkMode, setDarkMode }) {
                     <p className="text-sm text-[#4B5563] dark:text-slate-300">{item.role}</p>
                   </div>
                 </figcaption>
-              </motion.figure>
+              </SurfaceCard>
             ))}
           </div>
         </SectionHeading>
@@ -698,18 +701,16 @@ function LandingPage({ navigate, darkMode, setDarkMode }) {
         >
           <div className="grid gap-6 lg:grid-cols-3">
             {pricing.map((plan) => (
-              <motion.article
+              <SurfaceCard
+                as={motion.article}
                 key={plan.name}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 variants={sectionVariants}
                 transition={{ duration: 0.45 }}
-                className={`rounded-3xl border p-6 transition-all duration-300 hover:-translate-y-2 ${
-                  plan.featured
-                    ? 'border-[#7C3AED] bg-[#7C3AED] text-white shadow-[0_24px_70px_rgba(124,58,237,0.35)] hover:shadow-[0_28px_80px_rgba(124,58,237,0.45)]'
-                    : 'border-violet-200 bg-white shadow-[0_14px_34px_rgba(124,58,237,0.08)] hover:shadow-[0_24px_60px_rgba(124,58,237,0.2)] dark:border-white/10 dark:bg-white/5'
-                }`}
+                featured={plan.featured}
+                className={`p-6 ${plan.featured ? 'bg-[#7C3AED] text-white' : ''}`}
               >
                 <span className={`inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-[0.22em] ${plan.featured ? 'bg-white/15 text-violet-50' : 'bg-violet-100 text-[#7C3AED] dark:bg-white/10 dark:text-violet-200'}`}>
                   {plan.badge}
@@ -723,23 +724,20 @@ function LandingPage({ navigate, darkMode, setDarkMode }) {
                 <h3 className="mt-4 text-2xl font-bold">{plan.name}</h3>
                 <ul className="mt-6 space-y-3">
                   {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-3 text-sm font-medium">
+                    <li key={feature} className={`flex items-center gap-3 text-sm font-medium ${plan.featured ? 'text-violet-50' : 'text-[#1E1E2E] dark:text-slate-100'}`}>
                       <FaCheckCircle className={plan.featured ? 'text-cyan-200' : 'text-[#7C3AED]'} />
                       {feature}
                     </li>
                   ))}
                 </ul>
-                <button
+                <ActionButton
                   type="button"
-                  className={`mt-8 w-full rounded-2xl px-5 py-4 text-sm font-bold transition ${
-                    plan.featured
-                      ? 'bg-white text-[#7C3AED] hover:bg-cyan-50'
-                      : 'bg-[#7C3AED] text-white hover:bg-[#06B6D4] dark:bg-white/10 dark:hover:bg-white/15'
-                  }`}
+                  variant={plan.featured ? 'secondary' : 'primary'}
+                  className={`mt-8 w-full ${plan.featured ? 'bg-white text-[#7C3AED] hover:bg-cyan-50' : ''}`}
                 >
                   {plan.cta}
-                </button>
-              </motion.article>
+                </ActionButton>
+              </SurfaceCard>
             ))}
           </div>
         </SectionHeading>
@@ -750,11 +748,11 @@ function LandingPage({ navigate, darkMode, setDarkMode }) {
           title="Common questions, answered clearly."
           subtitle="A tidy accordion keeps the answers compact and easy to scan."
         >
-          <div className="mx-auto max-w-3xl divide-y divide-violet-200 rounded-3xl border border-violet-200 bg-white shadow-[0_14px_34px_rgba(124,58,237,0.08)] dark:divide-white/10 dark:border-white/10 dark:bg-white/5">
+          <SurfaceCard as="div" className="mx-auto max-w-3xl divide-y divide-violet-200 dark:divide-white/10">
             {faqs.map((faq, index) => (
               <FaqItem key={faq.question} faq={faq} index={index} />
             ))}
-          </div>
+          </SurfaceCard>
         </SectionHeading>
       </main>
 
@@ -1336,27 +1334,6 @@ function TodoPage({ navigate, darkMode, setDarkMode }) {
         </div>
       </main>
     </div>
-  )
-}
-
-function SectionHeading({ id, label, title, subtitle, children }) {
-  return (
-    <motion.section
-      id={id}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.18 }}
-      variants={sectionVariants}
-      transition={{ duration: 0.5 }}
-      className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8"
-    >
-      <div className="mx-auto mb-12 max-w-2xl text-center">
-        <p className="text-sm font-black uppercase tracking-[0.38em] text-[#7C3AED]">{label}</p>
-        <h2 className="mt-4 text-3xl font-black tracking-tight text-[#1E1E2E] sm:text-4xl dark:text-white">{title}</h2>
-        <p className="mt-4 text-base leading-7 text-[#4B5563] dark:text-slate-300">{subtitle}</p>
-      </div>
-      {children}
-    </motion.section>
   )
 }
 
