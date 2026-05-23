@@ -1,26 +1,33 @@
 # TaskFlow - Smart Todo App
 
-TaskFlow is a modern, responsive landing page for a smart todo application. It is built with React, Vite, Tailwind CSS, Framer Motion, and React Icons.
+TaskFlow is a modern landing page plus a public todo app route built with React, Vite, Tailwind CSS, Framer Motion, and React Icons.
 
-## Highlights
+## Pages
 
-- Hero section with app positioning and mockup placeholder
-- Feature cards highlighting the core product value
-- How-it-works workflow section
-- Testimonials, pricing, FAQ, and footer newsletter signup
+- `/` — marketing landing page
+- `/app` — fully working public todo app with localStorage persistence
+
+## Features
+
+- Hero, stats, features, how-it-works, testimonials, pricing, FAQ, and footer
+- Sticky blurred navbar with working mobile menu
 - Dark mode toggle
-- Mobile-first responsive design
-- Smooth motion and polished visual hierarchy
+- Back-to-top button
+- Cookie/notification banner
+- Scroll reveal animations
+- Public todo app with:
+  - add tasks with Enter or button
+  - priorities: High, Medium, Low
+  - due dates
+  - category tags: Work, Personal, Shopping, Health
+  - complete / delete / clear completed
+  - filters and sorting
+  - progress bar
+  - empty state
+  - localStorage persistence
+  - confetti when everything is done
 
-## Tech Stack
-
-- React
-- Vite
-- Tailwind CSS
-- Framer Motion
-- React Icons
-
-## Getting Started
+## Run locally
 
 ```bash
 npm install
@@ -33,13 +40,14 @@ npm run dev
 npm run build
 ```
 
-## Project Structure
+## Deployment note
 
-- `src/App.jsx` — landing page UI and sections
-- `src/index.css` — Tailwind setup and global styles
-- `tailwind.config.js` — theme customization
-- `postcss.config.js` — PostCSS configuration
+The project includes a Vercel rewrite so `/app` works as a direct route in production.
 
-## Notes
+## Tech Stack
 
-This project uses fake testimonials and marketing copy for demo purposes only.
+- React
+- Vite
+- Tailwind CSS
+- Framer Motion
+- React Icons
